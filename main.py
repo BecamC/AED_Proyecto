@@ -705,8 +705,8 @@ class BFSContactos(Scene):
         self.wait(1.5)
 
         nivel0 = Text(
-            "Nivel 0: caso inicial",
-            font_size=22,
+            "Nivel 0",
+            font_size=20,
             color=RED
         ).to_edge(LEFT).shift(UP * 2.6)
 
@@ -733,10 +733,10 @@ class BFSContactos(Scene):
         ).move_to(estado)
 
         nivel1 = Text(
-            "Nivel 1: contactos directos",
-            font_size=22,
+            "Nivel 1",
+            font_size=20,
             color=BLUE
-        ).move_to(nivel0)
+        ).align_to(nivel0, LEFT).align_to(nivel0, UP)
 
         self.play(
             Transform(estado, estado1),
@@ -768,10 +768,10 @@ class BFSContactos(Scene):
         ).move_to(estado)
 
         nivel2 = Text(
-            "Nivel 2: contactos de los contactos",
-            font_size=22,
+            "Nivel 2",
+            font_size=20,
             color=GREEN
-        ).move_to(nivel0)
+        ).align_to(nivel0, LEFT).align_to(nivel0, UP)
 
         self.play(
             Transform(estado, estado2),
@@ -828,9 +828,9 @@ class BFSContactos(Scene):
 
         nivel3 = Text(
             "Nivel 3",
-            font_size=22,
+            font_size=20,
             color=RED
-        ).move_to(nivel0)
+        ).align_to(nivel0, LEFT).align_to(nivel0, UP)
 
         self.play(
             Transform(estado, estado3),
