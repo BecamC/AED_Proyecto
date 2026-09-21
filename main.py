@@ -70,27 +70,34 @@ class BFSContactos(Scene):
             font_size=30
         ).next_to(titulo, DOWN)
 
+        autores = Text(
+            "Alonso Benites  -  Miguel Ucañani  -  David Ortiz",
+            font_size=22
+        ).next_to(subtitulo, DOWN, buff=0.4)
+
         self.play(
             FadeIn(titulo),
             run_time=1.5
         )
 
-        self.wait(6)
+        self.wait(2)
 
         self.play(
             FadeIn(subtitulo),
+            FadeIn(autores),
             run_time=1
         )
 
-        self.wait(5)
+        self.wait(2.5)
 
         self.play(
             titulo.animate.scale(0.70).to_edge(UP),
             FadeOut(subtitulo),
+            FadeOut(autores),
             run_time=1.5
         )
 
-        self.wait(1)
+        self.wait(0.5)
 
         seccion = Text(
             "1. ¿Que es BFS?",
@@ -115,7 +122,7 @@ class BFSContactos(Scene):
             run_time=1.5
         )
 
-        self.wait(8)
+        self.wait(3)
 
         concepto = Text(
             "Grafo = vertices (nodos) + aristas (conexiones)",
@@ -128,7 +135,7 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        self.wait(5)
+        self.wait(2.5)
 
         self.play(
             FadeOut(definicion),
@@ -202,15 +209,15 @@ class BFSContactos(Scene):
 
         self.play(
             *[Create(a) for a in aristas],
-            run_time=2
+            run_time=1.5
         )
 
         self.play(
             *[FadeIn(n) for n in nodos.values()],
-            run_time=2
+            run_time=1.5
         )
 
-        self.wait(5)
+        self.wait(2)
 
         explicacion = Text(
             "BFS comienza en un nodo y avanza nivel por nivel.",
@@ -227,7 +234,7 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        self.wait(5)
+        self.wait(2)
 
         self.play(
             FadeOut(explicacion),
@@ -265,17 +272,17 @@ class BFSContactos(Scene):
             font_size=22
         ).next_to(paso3, DOWN, buff=0.35)
 
-        self.play(FadeIn(paso1), run_time=1)
-        self.wait(3.5)
+        self.play(FadeIn(paso1), run_time=0.8)
+        self.wait(1.2)
 
-        self.play(FadeIn(paso2), run_time=1)
-        self.wait(3.5)
+        self.play(FadeIn(paso2), run_time=0.8)
+        self.wait(1.2)
 
-        self.play(FadeIn(paso3), run_time=1)
-        self.wait(3.5)
+        self.play(FadeIn(paso3), run_time=0.8)
+        self.wait(1.2)
 
-        self.play(FadeIn(paso4), run_time=1)
-        self.wait(3.5)
+        self.play(FadeIn(paso4), run_time=0.8)
+        self.wait(1.5)
 
         self.play(
             FadeOut(pasos_titulo),
@@ -310,10 +317,10 @@ class BFSContactos(Scene):
             Create(caja_cola),
             FadeIn(titulo_cola),
             Write(cola),
-            run_time=1.5
+            run_time=1.2
         )
 
-        self.wait(3.5)
+        self.wait(1.5)
 
         nivel = Text(
             "Nivel 0",
@@ -330,7 +337,7 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        self.wait(4)
+        self.wait(1.5)
 
         cola_1 = Text(
             "[ B, C ]",
@@ -357,10 +364,10 @@ class BFSContactos(Scene):
                 opacity=0.8
             ),
 
-            run_time=1.5
+            run_time=1.2
         )
 
-        self.wait(5)
+        self.wait(2)
 
         cola_2 = Text(
             "[ D, E, F ]",
@@ -392,10 +399,10 @@ class BFSContactos(Scene):
                 opacity=0.8
             ),
 
-            run_time=1.5
+            run_time=1.2
         )
 
-        self.wait(5)
+        self.wait(2)
 
         cola_3 = Text(
             "[ G ]",
@@ -417,10 +424,10 @@ class BFSContactos(Scene):
                 opacity=0.8
             ),
 
-            run_time=1.5
+            run_time=1.2
         )
 
-        self.wait(5)
+        self.wait(2)
 
         orden = Text(
             "Orden: A -> B -> C -> D -> E -> F -> G",
@@ -433,7 +440,7 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        self.wait(5)
+        self.wait(2)
 
         complejidad = Text(
             "Complejidad: O(V + E)",
@@ -446,7 +453,7 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        self.wait(5)
+        self.wait(2)
 
         mensaje_teoria = Text(
             "BFS explora primero los nodos mas cercanos.",
@@ -459,7 +466,7 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        self.wait(6)
+        self.wait(2)
 
         elementos_teoria = [
             titulo,
@@ -491,7 +498,7 @@ class BFSContactos(Scene):
             run_time=1.5
         )
 
-        self.wait(5)
+        self.wait(2)
 
         descripcion = Text(
             "Cada persona sera un nodo.\n"
@@ -505,7 +512,7 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        self.wait(5)
+        self.wait(2)
 
         self.play(
             FadeOut(titulo_caso),
@@ -536,7 +543,7 @@ class BFSContactos(Scene):
             run_time=1.5
         )
 
-        self.wait(6)
+        self.wait(2.5)
 
         self.play(
             FadeOut(contexto),
@@ -646,7 +653,7 @@ class BFSContactos(Scene):
                 Create(x)
                 for x in contactos.values()
             ],
-            run_time=2
+            run_time=1.5
         )
 
         self.play(
@@ -654,10 +661,10 @@ class BFSContactos(Scene):
                 FadeIn(x)
                 for x in personas.values()
             ],
-            run_time=2
+            run_time=1.5
         )
 
-        self.wait(5)
+        self.wait(2)
 
         significado = Text(
             "Nodo = persona       Arista = contacto",
@@ -676,7 +683,7 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        self.wait(4)
+        self.wait(1.5)
 
         estado = Text(
             "Cola: [Paciente 0]",
@@ -692,10 +699,10 @@ class BFSContactos(Scene):
 
         self.play(
             FadeIn(estado),
-            run_time=1.5
+            run_time=1.2
         )
 
-        self.wait(3)
+        self.wait(1.5)
 
         nivel0 = Text(
             "Nivel 0: caso inicial",
@@ -718,7 +725,7 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        self.wait(4)
+        self.wait(1.5)
 
         estado1 = Text(
             "Cola: [Ana, Bruno, Carla]",
@@ -750,10 +757,10 @@ class BFSContactos(Scene):
                 opacity=0.85
             ),
 
-            run_time=1.5
+            run_time=1.2
         )
 
-        self.wait(5)
+        self.wait(2)
 
         estado2 = Text(
             "Cola: [Diego, Elena, Fabio, Gabriela]",
@@ -790,10 +797,10 @@ class BFSContactos(Scene):
                 opacity=0.85
             ),
 
-            run_time=1.5
+            run_time=1.2
         )
 
-        self.wait(5)
+        self.wait(2)
 
         pregunta = Text(
             "¿Cuantos niveles necesitamos para llegar a Hugo?",
@@ -806,7 +813,7 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        self.wait(6)
+        self.wait(2)
 
         objetivo = SurroundingRectangle(
             personas["H"],
@@ -836,10 +843,10 @@ class BFSContactos(Scene):
 
             Create(objetivo),
 
-            run_time=1.5
+            run_time=1.2
         )
 
-        self.wait(6)
+        self.wait(2)
 
         self.play(
             FadeOut(pregunta),
@@ -861,28 +868,28 @@ class BFSContactos(Scene):
             contactos[("P0", "C")].animate.set_color(
                 YELLOW
             ).set_stroke(width=7),
-            run_time=1
+            run_time=0.8
         )
 
-        self.wait(1)
+        self.wait(0.5)
 
         self.play(
             contactos[("C", "G")].animate.set_color(
                 YELLOW
             ).set_stroke(width=7),
-            run_time=1
+            run_time=0.8
         )
 
-        self.wait(1)
+        self.wait(0.5)
 
         self.play(
             contactos[("G", "H")].animate.set_color(
                 YELLOW
             ).set_stroke(width=7),
-            run_time=1
+            run_time=0.8
         )
 
-        self.wait(2)
+        self.wait(1)
 
         camino = Text(
             "Paciente 0 -> Carla -> Gabriela -> Hugo",
@@ -892,10 +899,10 @@ class BFSContactos(Scene):
 
         self.play(
             Transform(ruta_texto, camino),
-            run_time=1.5
+            run_time=1.2
         )
 
-        self.wait(6)
+        self.wait(2)
 
         distancia = Text(
             "Hugo esta a 3 niveles del paciente cero.",
@@ -908,7 +915,7 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        self.wait(6)
+        self.wait(2)
 
         explicacion1 = Text(
             "BFS no salta niveles.",
@@ -921,7 +928,7 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        self.wait(6)
+        self.wait(1.5)
 
         explicacion2 = Text(
             "Primero revisa los contactos mas cercanos.",
@@ -931,10 +938,10 @@ class BFSContactos(Scene):
 
         self.play(
             Transform(ruta_texto, explicacion2),
-            run_time=1.5
+            run_time=1.2
         )
 
-        self.wait(6)
+        self.wait(1.5)
 
         explicacion3 = Text(
             "En un grafo no ponderado, BFS permite encontrar\n"
@@ -949,7 +956,7 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        self.wait(5)
+        self.wait(2.5)
 
         todo_aplicacion = [
             titulo_aplicacion,
@@ -982,7 +989,7 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        self.wait(3)
+        self.wait(1)
 
         punto1 = Text(
             "BFS recorre un grafo nivel por nivel.",
@@ -991,10 +998,10 @@ class BFSContactos(Scene):
 
         self.play(
             FadeIn(punto1),
-            run_time=1
+            run_time=0.8
         )
 
-        self.wait(3)
+        self.wait(1.2)
 
         punto2 = Text(
             "Utiliza una cola FIFO para organizar la busqueda.",
@@ -1003,10 +1010,10 @@ class BFSContactos(Scene):
 
         self.play(
             FadeIn(punto2),
-            run_time=1
+            run_time=0.8
         )
 
-        self.wait(3)
+        self.wait(1.2)
 
         punto3 = Text(
             "Puede aplicarse al rastreo de contactos.",
@@ -1015,10 +1022,10 @@ class BFSContactos(Scene):
 
         self.play(
             FadeIn(punto3),
-            run_time=1
+            run_time=0.8
         )
 
-        self.wait(3)
+        self.wait(1.5)
 
         final = Text(
             "BFS: explorar primero lo mas cercano",
@@ -1031,4 +1038,4 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        self.wait(7)
+        self.wait(3)
