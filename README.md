@@ -84,7 +84,7 @@ El video generado se guarda en la carpeta `media/videos/main/1080p60/`.
 
 ## Video demo
 
-🎬 Link del video: <URL_DE_YOUTUBE>
+Link del video: <URL_DE_YOUTUBE>
 
 ## Estructura del repositorio
 
