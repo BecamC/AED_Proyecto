@@ -1,7 +1,7 @@
 # BFS: Búsqueda en Amplitud aplicada al rastreo de contactos
 
 Proyecto 1 — Animando Estructuras de Datos
-**CS2023 · Algoritmos y Estructuras de Datos · UNIVERSIDAD DE INGENIERÍA Y TECNOLOGÍA**
+ · **Algoritmos y Estructuras de Datos (CS2023) · UNIVERSIDAD DE INGENIERÍA Y TECNOLOGÍA**
 
 ## Descripción del proyecto
 
