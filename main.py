@@ -35,12 +35,16 @@ class BFSContactos(Scene):
         codigo_texto = Text(
             codigo,
             font_size=21
-        ).move_to(circulo)
+        )
+        # ajusta el texto para que quepa dentro del circulo (ej. "root")
+        if codigo_texto.width > circulo.width * 0.75:
+            codigo_texto.scale_to_fit_width(circulo.width * 0.75)
+        codigo_texto.move_to(circulo)
 
         nombre_texto = Text(
             nombre,
-            font_size=18
-        ).next_to(circulo, DOWN, buff=0.12)
+            font_size=20
+        ).next_to(circulo, DOWN, buff=0.2)
 
         return VGroup(circulo, codigo_texto, nombre_texto)
 
@@ -66,8 +70,8 @@ class BFSContactos(Scene):
         )
 
         subtitulo = Text(
-            "De la teoria al rastreo de contactos",
-            font_size=30
+            "Rastreo de contactos: del problema a la solucion",
+            font_size=27
         ).next_to(titulo, DOWN)
 
         autores = Text(
@@ -80,7 +84,7 @@ class BFSContactos(Scene):
             run_time=1.5
         )
 
-        self.wait(2)
+        self.wait(6)
 
         self.play(
             FadeIn(subtitulo),
@@ -88,7 +92,7 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        self.wait(2.5)
+        self.wait(5)
 
         self.play(
             titulo.animate.scale(0.70).to_edge(UP),
@@ -97,10 +101,73 @@ class BFSContactos(Scene):
             run_time=1.5
         )
 
-        self.wait(0.5)
+        self.wait(1)
+
+        # ---------------- EL PROBLEMA ----------------
+
+        seccion_problema = Text(
+            "El problema: rastreo de contactos",
+            font_size=30,
+            color=RED
+        ).next_to(titulo, DOWN, buff=0.5)
+
+        self.play(
+            FadeIn(seccion_problema),
+            run_time=1
+        )
+
+        problema = Text(
+            "Se detecta un caso de gripe y queremos rastrear\n"
+            "sus contactos directos y los contactos de estos.",
+            font_size=27,
+            line_spacing=1.3
+        ).move_to(ORIGIN)
+
+        self.play(
+            Write(problema),
+            run_time=1.5
+        )
+
+        self.wait(5)
+
+        problema2 = Text(
+            "¿Como los encontramos a todos de forma ordenada,\n"
+            "sin repetir y sin saltarnos a nadie?",
+            font_size=27,
+            color=YELLOW,
+            line_spacing=1.3
+        ).move_to(problema)
+
+        self.play(
+            Transform(problema, problema2),
+            run_time=1
+        )
+
+        self.wait(5)
+
+        respuesta = Text(
+            "La respuesta: BFS (Busqueda en Amplitud).",
+            font_size=28,
+            color=BLUE
+        ).move_to(problema)
+
+        self.play(
+            Transform(problema, respuesta),
+            run_time=1
+        )
+
+        self.wait(4)
+
+        self.play(
+            FadeOut(problema),
+            FadeOut(seccion_problema),
+            run_time=1
+        )
+
+        # ---------------- LA SOLUCION: ¿QUE ES BFS? ----------------
 
         seccion = Text(
-            "1. ¿Que es BFS?",
+            "¿Que es BFS?",
             font_size=32,
             color=YELLOW
         ).next_to(titulo, DOWN, buff=0.5)
@@ -122,7 +189,7 @@ class BFSContactos(Scene):
             run_time=1.5
         )
 
-        self.wait(3)
+        self.wait(8)
 
         concepto = Text(
             "Grafo = vertices (nodos) + aristas (conexiones)",
@@ -135,7 +202,7 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        self.wait(2.5)
+        self.wait(5)
 
         self.play(
             FadeOut(definicion),
@@ -209,15 +276,15 @@ class BFSContactos(Scene):
 
         self.play(
             *[Create(a) for a in aristas],
-            run_time=1.5
+            run_time=2
         )
 
         self.play(
             *[FadeIn(n) for n in nodos.values()],
-            run_time=1.5
+            run_time=2
         )
 
-        self.wait(2)
+        self.wait(5)
 
         explicacion = Text(
             "BFS comienza en un nodo y avanza nivel por nivel.",
@@ -234,7 +301,7 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        self.wait(2)
+        self.wait(5)
 
         self.play(
             FadeOut(explicacion),
@@ -272,17 +339,17 @@ class BFSContactos(Scene):
             font_size=22
         ).next_to(paso3, DOWN, buff=0.35)
 
-        self.play(FadeIn(paso1), run_time=0.8)
-        self.wait(1.2)
+        self.play(FadeIn(paso1), run_time=1)
+        self.wait(3.5)
 
-        self.play(FadeIn(paso2), run_time=0.8)
-        self.wait(1.2)
+        self.play(FadeIn(paso2), run_time=1)
+        self.wait(3.5)
 
-        self.play(FadeIn(paso3), run_time=0.8)
-        self.wait(1.2)
+        self.play(FadeIn(paso3), run_time=1)
+        self.wait(3.5)
 
-        self.play(FadeIn(paso4), run_time=0.8)
-        self.wait(1.5)
+        self.play(FadeIn(paso4), run_time=1)
+        self.wait(3.5)
 
         self.play(
             FadeOut(pasos_titulo),
@@ -317,10 +384,10 @@ class BFSContactos(Scene):
             Create(caja_cola),
             FadeIn(titulo_cola),
             Write(cola),
-            run_time=1.2
+            run_time=1.5
         )
 
-        self.wait(1.5)
+        self.wait(3.5)
 
         nivel = Text(
             "Nivel 0",
@@ -337,7 +404,7 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        self.wait(1.5)
+        self.wait(4)
 
         cola_1 = Text(
             "[ B, C ]",
@@ -364,10 +431,10 @@ class BFSContactos(Scene):
                 opacity=0.8
             ),
 
-            run_time=1.2
+            run_time=1.5
         )
 
-        self.wait(2)
+        self.wait(5)
 
         cola_2 = Text(
             "[ D, E, F ]",
@@ -399,10 +466,10 @@ class BFSContactos(Scene):
                 opacity=0.8
             ),
 
-            run_time=1.2
+            run_time=1.5
         )
 
-        self.wait(2)
+        self.wait(5)
 
         cola_3 = Text(
             "[ G ]",
@@ -424,10 +491,10 @@ class BFSContactos(Scene):
                 opacity=0.8
             ),
 
-            run_time=1.2
+            run_time=1.5
         )
 
-        self.wait(2)
+        self.wait(5)
 
         orden = Text(
             "Orden: A -> B -> C -> D -> E -> F -> G",
@@ -440,7 +507,7 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        self.wait(2)
+        self.wait(5)
 
         complejidad = Text(
             "Complejidad: O(V + E)",
@@ -453,7 +520,7 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        self.wait(2)
+        self.wait(5)
 
         mensaje_teoria = Text(
             "BFS explora primero los nodos mas cercanos.",
@@ -466,7 +533,7 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        self.wait(2)
+        self.wait(6)
 
         elementos_teoria = [
             titulo,
@@ -487,38 +554,7 @@ class BFSContactos(Scene):
             run_time=1.5
         )
 
-        titulo_caso = Text(
-            "Aplicacion: rastreo de contactos",
-            font_size=43,
-            color=RED
-        )
-
-        self.play(
-            Write(titulo_caso),
-            run_time=1.5
-        )
-
-        self.wait(2)
-
-        descripcion = Text(
-            "Cada persona sera un nodo.\n"
-            "Cada contacto entre personas sera una arista.",
-            font_size=29,
-            line_spacing=1.3
-        ).next_to(titulo_caso, DOWN)
-
-        self.play(
-            FadeIn(descripcion),
-            run_time=1
-        )
-
-        self.wait(2)
-
-        self.play(
-            FadeOut(titulo_caso),
-            FadeOut(descripcion),
-            run_time=1
-        )
+        # ---------------- RESOLVIENDO EL PROBLEMA CON BFS ----------------
 
         titulo_aplicacion = Text(
             "Rastreo de contactos usando BFS",
@@ -531,29 +567,31 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        contexto = Text(
-            "Se detecta un caso de gripe y queremos rastrear\n"
-            "sus contactos directos y los contactos de estos.",
-            font_size=25,
-            line_spacing=1.2
-        )
+        recordatorio = Text(
+            "Volvamos al caso inicial y resolvamoslo con BFS.",
+            font_size=27,
+            color=YELLOW
+        ).move_to(ORIGIN)
 
         self.play(
-            Write(contexto),
+            Write(recordatorio),
             run_time=1.5
         )
 
-        self.wait(2.5)
+        self.wait(4)
 
         self.play(
-            FadeOut(contexto),
+            FadeOut(recordatorio),
             run_time=1
         )
+
+        # --- Creamos (en memoria) todas las personas y contactos ---
+        # (todavia no se dibujan; se iran mostrando por niveles)
 
         personas = {}
 
         personas["P0"] = self.crear_persona(
-            "P0",
+            "root",
             "Paciente 0",
             [0, 1.7, 0]
         )
@@ -648,23 +686,14 @@ class BFSContactos(Scene):
             personas["H"]
         )
 
-        self.play(
-            *[
-                Create(x)
-                for x in contactos.values()
-            ],
-            run_time=1.5
-        )
+        # --- Dibujamos primero solo la raiz (root) ---
 
         self.play(
-            *[
-                FadeIn(x)
-                for x in personas.values()
-            ],
-            run_time=1.5
+            FadeIn(personas["P0"]),
+            run_time=1
         )
 
-        self.wait(2)
+        self.wait(1)
 
         significado = Text(
             "Nodo = persona       Arista = contacto",
@@ -683,7 +712,7 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        self.wait(1.5)
+        self.wait(3)
 
         estado = Text(
             "Cola: [Paciente 0]",
@@ -702,30 +731,53 @@ class BFSContactos(Scene):
             run_time=1.2
         )
 
-        self.wait(1.5)
+        self.wait(2)
 
         nivel0 = Text(
             "Nivel 0",
-            font_size=20,
+            font_size=22,
             color=RED
         ).to_edge(LEFT).shift(UP * 2.6)
 
+        raiz_texto = Text(
+            "El nodo inicial es la raiz (root):\n"
+            "el punto de partida de la busqueda.",
+            font_size=22,
+            color=RED,
+            line_spacing=1.1
+        ).to_edge(DOWN)
+
         self.play(
-            personas["P0"][0].animate.set_fill(
-                RED,
-                opacity=0.85
-            ),
-
-            personas["P0"][0].animate.set_stroke(
-                RED
-            ),
-
+            personas["P0"][0].animate.set_fill(RED, opacity=0.85),
+            personas["P0"][0].animate.set_stroke(RED),
             FadeIn(nivel0),
-
+            FadeIn(raiz_texto),
             run_time=1
         )
 
-        self.wait(1.5)
+        self.wait(4)
+
+        self.play(
+            FadeOut(raiz_texto),
+            run_time=0.8
+        )
+
+        # --- NIVEL 1: aristas resaltadas + nodos ---
+
+        aristas_n1 = [
+            contactos[("P0", "A")],
+            contactos[("P0", "B")],
+            contactos[("P0", "C")],
+        ]
+
+        for a in aristas_n1:
+            a.set_color(YELLOW).set_stroke(width=7)
+
+        self.play(
+            *[Create(a) for a in aristas_n1],
+            *[FadeIn(personas[k]) for k in ["A", "B", "C"]],
+            run_time=1.2
+        )
 
         estado1 = Text(
             "Cola: [Ana, Bruno, Carla]",
@@ -734,33 +786,45 @@ class BFSContactos(Scene):
 
         nivel1 = Text(
             "Nivel 1",
-            font_size=20,
+            font_size=22,
             color=BLUE
-        ).align_to(nivel0, LEFT).align_to(nivel0, UP)
+        ).move_to(nivel0)
 
         self.play(
             Transform(estado, estado1),
             Transform(nivel0, nivel1),
 
-            personas["A"][0].animate.set_fill(
-                BLUE,
-                opacity=0.85
-            ),
+            personas["A"][0].animate.set_fill(BLUE, opacity=0.85),
+            personas["B"][0].animate.set_fill(BLUE, opacity=0.85),
+            personas["C"][0].animate.set_fill(BLUE, opacity=0.85),
 
-            personas["B"][0].animate.set_fill(
-                BLUE,
-                opacity=0.85
-            ),
-
-            personas["C"][0].animate.set_fill(
-                BLUE,
-                opacity=0.85
-            ),
-
-            run_time=1.2
+            run_time=1.5
         )
 
-        self.wait(2)
+        self.wait(4)
+
+        # --- NIVEL 2: las aristas del nivel 1 vuelven a gris ---
+
+        self.play(
+            *[a.animate.set_color(GRAY).set_stroke(width=3) for a in aristas_n1],
+            run_time=0.8
+        )
+
+        aristas_n2 = [
+            contactos[("A", "D")],
+            contactos[("A", "E")],
+            contactos[("B", "F")],
+            contactos[("C", "G")],
+        ]
+
+        for a in aristas_n2:
+            a.set_color(YELLOW).set_stroke(width=7)
+
+        self.play(
+            *[Create(a) for a in aristas_n2],
+            *[FadeIn(personas[k]) for k in ["D", "E", "F", "G"]],
+            run_time=1.2
+        )
 
         estado2 = Text(
             "Cola: [Diego, Elena, Fabio, Gabriela]",
@@ -769,38 +833,43 @@ class BFSContactos(Scene):
 
         nivel2 = Text(
             "Nivel 2",
-            font_size=20,
+            font_size=22,
             color=GREEN
-        ).align_to(nivel0, LEFT).align_to(nivel0, UP)
+        ).move_to(nivel0)
 
         self.play(
             Transform(estado, estado2),
             Transform(nivel0, nivel2),
 
-            personas["D"][0].animate.set_fill(
-                GREEN,
-                opacity=0.85
-            ),
+            personas["D"][0].animate.set_fill(GREEN, opacity=0.85),
+            personas["E"][0].animate.set_fill(GREEN, opacity=0.85),
+            personas["F"][0].animate.set_fill(GREEN, opacity=0.85),
+            personas["G"][0].animate.set_fill(GREEN, opacity=0.85),
 
-            personas["E"][0].animate.set_fill(
-                GREEN,
-                opacity=0.85
-            ),
-
-            personas["F"][0].animate.set_fill(
-                GREEN,
-                opacity=0.85
-            ),
-
-            personas["G"][0].animate.set_fill(
-                GREEN,
-                opacity=0.85
-            ),
-
-            run_time=1.2
+            run_time=1.5
         )
 
-        self.wait(2)
+        self.wait(4)
+
+        # --- Mostramos a Hugo (gris) como objetivo antes de preguntar ---
+
+        self.play(
+            FadeIn(personas["H"]),
+            run_time=1
+        )
+
+        objetivo = SurroundingRectangle(
+            personas["H"],
+            color=RED,
+            buff=0.15
+        )
+
+        self.play(
+            Create(objetivo),
+            run_time=1
+        )
+
+        self.wait(1)
 
         pregunta = Text(
             "¿Cuantos niveles necesitamos para llegar a Hugo?",
@@ -813,12 +882,26 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        self.wait(2)
+        self.wait(5)
 
-        objetivo = SurroundingRectangle(
-            personas["H"],
-            color=RED,
-            buff=0.15
+        # --- NIVEL 3: las aristas del nivel 2 vuelven a gris ---
+
+        self.play(
+            *[a.animate.set_color(GRAY).set_stroke(width=3) for a in aristas_n2],
+            run_time=0.8
+        )
+
+        aristas_n3 = [
+            contactos[("G", "H")],
+        ]
+
+        for a in aristas_n3:
+            a.set_color(YELLOW).set_stroke(width=7)
+
+        # dibujamos la arista que conecta con Hugo
+        self.play(
+            *[Create(a) for a in aristas_n3],
+            run_time=1
         )
 
         estado3 = Text(
@@ -828,30 +911,34 @@ class BFSContactos(Scene):
 
         nivel3 = Text(
             "Nivel 3",
-            font_size=20,
+            font_size=22,
             color=RED
-        ).align_to(nivel0, LEFT).align_to(nivel0, UP)
+        ).move_to(nivel0)
 
+        # Hugo pasa a rojo (nivel 3)
         self.play(
             Transform(estado, estado3),
             Transform(nivel0, nivel3),
 
-            personas["H"][0].animate.set_fill(
-                RED,
-                opacity=0.85
-            ),
+            personas["H"][0].animate.set_fill(RED, opacity=0.85),
 
-            Create(objetivo),
-
-            run_time=1.2
+            run_time=1.5
         )
 
-        self.wait(2)
+        self.wait(5)
 
         self.play(
             FadeOut(pregunta),
             run_time=1
         )
+
+        # las aristas del nivel 3 vuelven a gris antes de pintar el camino
+        self.play(
+            *[a.animate.set_color(GRAY).set_stroke(width=3) for a in aristas_n3],
+            run_time=0.8
+        )
+
+        # ---------------- CAMINO (se queda igual) ----------------
 
         ruta_texto = Text(
             "Camino encontrado:",
@@ -868,28 +955,28 @@ class BFSContactos(Scene):
             contactos[("P0", "C")].animate.set_color(
                 YELLOW
             ).set_stroke(width=7),
-            run_time=0.8
+            run_time=1
         )
 
-        self.wait(0.5)
+        self.wait(1)
 
         self.play(
             contactos[("C", "G")].animate.set_color(
                 YELLOW
             ).set_stroke(width=7),
-            run_time=0.8
+            run_time=1
         )
 
-        self.wait(0.5)
+        self.wait(1)
 
         self.play(
             contactos[("G", "H")].animate.set_color(
                 YELLOW
             ).set_stroke(width=7),
-            run_time=0.8
+            run_time=1
         )
 
-        self.wait(1)
+        self.wait(2)
 
         camino = Text(
             "Paciente 0 -> Carla -> Gabriela -> Hugo",
@@ -899,10 +986,10 @@ class BFSContactos(Scene):
 
         self.play(
             Transform(ruta_texto, camino),
-            run_time=1.2
+            run_time=1.5
         )
 
-        self.wait(2)
+        self.wait(6)
 
         distancia = Text(
             "Hugo esta a 3 niveles del paciente cero.",
@@ -915,7 +1002,7 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        self.wait(2)
+        self.wait(6)
 
         explicacion1 = Text(
             "BFS no salta niveles.",
@@ -928,7 +1015,7 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        self.wait(1.5)
+        self.wait(6)
 
         explicacion2 = Text(
             "Primero revisa los contactos mas cercanos.",
@@ -938,10 +1025,10 @@ class BFSContactos(Scene):
 
         self.play(
             Transform(ruta_texto, explicacion2),
-            run_time=1.2
+            run_time=1.5
         )
 
-        self.wait(1.5)
+        self.wait(6)
 
         explicacion3 = Text(
             "En un grafo no ponderado, BFS permite encontrar\n"
@@ -956,7 +1043,7 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        self.wait(2.5)
+        self.wait(5)
 
         todo_aplicacion = [
             titulo_aplicacion,
@@ -989,7 +1076,7 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        self.wait(1)
+        self.wait(3)
 
         punto1 = Text(
             "BFS recorre un grafo nivel por nivel.",
@@ -998,10 +1085,10 @@ class BFSContactos(Scene):
 
         self.play(
             FadeIn(punto1),
-            run_time=0.8
+            run_time=1
         )
 
-        self.wait(1.2)
+        self.wait(3)
 
         punto2 = Text(
             "Utiliza una cola FIFO para organizar la busqueda.",
@@ -1010,10 +1097,10 @@ class BFSContactos(Scene):
 
         self.play(
             FadeIn(punto2),
-            run_time=0.8
+            run_time=1
         )
 
-        self.wait(1.2)
+        self.wait(3)
 
         punto3 = Text(
             "Puede aplicarse al rastreo de contactos.",
@@ -1022,10 +1109,10 @@ class BFSContactos(Scene):
 
         self.play(
             FadeIn(punto3),
-            run_time=0.8
+            run_time=1
         )
 
-        self.wait(1.5)
+        self.wait(3)
 
         final = Text(
             "BFS: explorar primero lo mas cercano",
@@ -1038,4 +1125,4 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        self.wait(3)
+        self.wait(7)
