@@ -1057,7 +1057,7 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        self.wait(3)
+        self.wait(1)
 
         punto1 = Text(
             "BFS recorre un grafo nivel por nivel.",
@@ -1069,7 +1069,7 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        self.wait(3)
+        self.wait(1)
 
         punto2 = Text(
             "Utiliza una cola FIFO para organizar la busqueda.",
@@ -1081,7 +1081,7 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        self.wait(3)
+        self.wait(1)
 
         punto3 = Text(
             "Puede aplicarse al rastreo de contactos.",
@@ -1093,7 +1093,7 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        self.wait(3)
+        self.wait(1)
 
         final = Text(
             "BFS: explorar primero lo mas cercano",
