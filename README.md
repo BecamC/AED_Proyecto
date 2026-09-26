@@ -19,7 +19,7 @@ sobre un grafo. La animación tiene dos partes:
 
 | Nombre y Apellido | Contribución |
 |---|---|
-| Alonso Aarón Benites Camacho | código y informes |
+| Alonso Aarón Benites Camacho | código, informes y voces |
 | Miguel Fernando Ucañani Tintaya | código |
 | David Alonso Ortiz Palomino | código |
 
@@ -84,8 +84,7 @@ El video generado se guarda en la carpeta `media/videos/main/1080p60/`.
 
 ## Video demo
 
-Link del video: <URL_DE_YOUTUBE>
-
+Link del video: [Drive](https://drive.google.com/file/d/12Ouf8biOLCJRG70Bwyh_C0FBliOfXeVf/view?usp=sharing)
 ## Estructura del repositorio
 
 ```
