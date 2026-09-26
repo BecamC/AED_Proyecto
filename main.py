@@ -36,7 +36,7 @@ class BFSContactos(Scene):
             codigo,
             font_size=21
         )
-        # ajusta el texto para que quepa dentro del circulo (ej. "root")
+
         if codigo_texto.width > circulo.width * 0.75:
             codigo_texto.scale_to_fit_width(circulo.width * 0.75)
         codigo_texto.move_to(circulo)
@@ -103,7 +103,6 @@ class BFSContactos(Scene):
 
         self.wait(1)
 
-        # ---------------- EL PROBLEMA ----------------
 
         seccion_problema = Text(
             "El problema: rastreo de contactos",
@@ -164,7 +163,6 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        # ---------------- LA SOLUCION: ¿QUE ES BFS? ----------------
 
         seccion = Text(
             "¿Que es BFS?",
@@ -554,7 +552,6 @@ class BFSContactos(Scene):
             run_time=1.5
         )
 
-        # ---------------- RESOLVIENDO EL PROBLEMA CON BFS ----------------
 
         titulo_aplicacion = Text(
             "Rastreo de contactos usando BFS",
@@ -585,8 +582,6 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        # --- Creamos (en memoria) todas las personas y contactos ---
-        # (todavia no se dibujan; se iran mostrando por niveles)
 
         personas = {}
 
@@ -686,8 +681,6 @@ class BFSContactos(Scene):
             personas["H"]
         )
 
-        # --- Dibujamos primero solo la raiz (root) ---
-
         self.play(
             FadeIn(personas["P0"]),
             run_time=1
@@ -762,8 +755,6 @@ class BFSContactos(Scene):
             run_time=0.8
         )
 
-        # --- NIVEL 1: aristas resaltadas + nodos ---
-
         aristas_n1 = [
             contactos[("P0", "A")],
             contactos[("P0", "B")],
@@ -803,7 +794,6 @@ class BFSContactos(Scene):
 
         self.wait(4)
 
-        # --- NIVEL 2: las aristas del nivel 1 vuelven a gris ---
 
         self.play(
             *[a.animate.set_color(GRAY).set_stroke(width=3) for a in aristas_n1],
@@ -851,8 +841,6 @@ class BFSContactos(Scene):
 
         self.wait(4)
 
-        # --- Mostramos a Hugo (gris) como objetivo antes de preguntar ---
-
         self.play(
             FadeIn(personas["H"]),
             run_time=1
@@ -884,8 +872,6 @@ class BFSContactos(Scene):
 
         self.wait(5)
 
-        # --- NIVEL 3: las aristas del nivel 2 vuelven a gris ---
-
         self.play(
             *[a.animate.set_color(GRAY).set_stroke(width=3) for a in aristas_n2],
             run_time=0.8
@@ -898,7 +884,6 @@ class BFSContactos(Scene):
         for a in aristas_n3:
             a.set_color(YELLOW).set_stroke(width=7)
 
-        # dibujamos la arista que conecta con Hugo
         self.play(
             *[Create(a) for a in aristas_n3],
             run_time=1
@@ -915,7 +900,6 @@ class BFSContactos(Scene):
             color=RED
         ).move_to(nivel0)
 
-        # Hugo pasa a rojo (nivel 3)
         self.play(
             Transform(estado, estado3),
             Transform(nivel0, nivel3),
@@ -932,13 +916,10 @@ class BFSContactos(Scene):
             run_time=1
         )
 
-        # las aristas del nivel 3 vuelven a gris antes de pintar el camino
         self.play(
             *[a.animate.set_color(GRAY).set_stroke(width=3) for a in aristas_n3],
             run_time=0.8
         )
-
-        # ---------------- CAMINO (se queda igual) ----------------
 
         ruta_texto = Text(
             "Camino encontrado:",
